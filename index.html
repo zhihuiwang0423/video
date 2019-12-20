@@ -1,15 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/jquery1.7.2.min.js"></script>
+    <script src="../js/drag.js"></script>
+    <style>
+
+.circle{width:40px;height:40px;background: #fac;}
+    </style>
 </head>
 <body>
-  <audio src="https://record.troila.com/bgm/erweima.mp3"></audio>
-  <video src="http://7xvl2z.com1.z0.glb.clouddn.com/nigg2.mp4" controls autoplay height="300px"></video>
-  <video src="http://7xvl2z.com1.z0.glb.clouddn.com/nigg2.mp4" controls autoplay muted playsinline height="300px"></video>
-  <video src="http://7xvl2z.com1.z0.glb.clouddn.com/nigg2.mp4" webkit-playsinline playsinline x5-playsinline x-webkit-airplay="allow" height="300px" controls></video>
+    注册
+    
+<div class="circle" id="moveIcon"></div>
 </body>
 </html>
+<script>
+$(function(){
+    
+    window.onload = function () {
+    var oDiv = document.getElementById('moveIcon');
+
+    var disX, moveX, L, T, starX, starY, starXEnd, starYEnd;
+
+    oDiv.addEventListener('touchstart', function (e) {
+        //e.preventDefault();
+        disX = e.touches[0].clientX - this.offsetLeft;
+        disY = e.touches[0].clientY - this.offsetTop;
+        starX = e.touches[0].clientX;
+        starY = e.touches[0].clientY;
+    });
+    oDiv.addEventListener('touchmove', function (e) {
+        L = e.touches[0].clientX - disX;
+        T = e.touches[0].clientY - disY;
+        starXEnd = e.touches[0].clientX - starX;
+        starYEnd = e.touches[0].clientY - starY;
+        //console.log(L);
+        if (L < 0) {
+            L = 0;
+        } else if (L > document.documentElement.clientWidth - this.offsetWidth) {
+            L = document.documentElement.clientWidth - this.offsetWidth;
+        }
+
+        if (T < 0) {
+            T = 0;
+        } else if (T > document.documentElement.clientHeight - this.offsetHeight) {
+            T = document.documentElement.clientHeight - this.offsetHeight;
+        }
+        moveX = L + 'px';
+        moveY = T + 'px';
+        //console.log(moveX);
+        this.style.left = moveX;
+        this.style.top = moveY;
+    });
+}
+
+})
+</script>
