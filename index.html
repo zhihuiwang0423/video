@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div id="btn" style="font-size:16px;background:#ccc;">我是video line</div>
-    <video id="my-video" class="w100" controls preload="auto" style="border:1px solid #0f0;width:100%;">
+    <div id="btn" style="font-size:16px;background:#ccc;margin-bottom:100px;padding:30px;">我是video line</div>
+    <video id="my-video" class="w100" controls preload="auto" style="display:none;">
         <source src="http://www.hilobo.com/func/instantmessage.mp4" type="video/mp4">
     </video>
 </body>
@@ -22,6 +22,7 @@
     var  btn = document.getElementById('btn')
     var video = document.getElementById('my-video')
     btn.onclick=function(){
+        video.style.cssText = `display:block;border:1px solid #0f0;width:100%;`
         video.play()
     }
 </script>
