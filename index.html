@@ -5,89 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .circle {
-            width: 40px;
-            height: 40px;
-            background: #fac;
-            position:absolute;
-            border-radius: 50%;
-            z-index: 2;
-        }
-    </style>
+    <title>Document</title>    
 </head>
 
 <body>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <p>注册</p>
-    <div class="circle" id="moveIcon"></div>
+    <video id="my-video" class="w100" controls preload="auto">
+        <source src="http://www.hilobo.com/func/instantmessage.mp4" type="video/mp4">
+    </video>
 </body>
 
 </html>
-<script>
-    window.onload = function () {
-        var oDiv = document.getElementById('moveIcon');
 
-        var disX, moveX, L, T, starX, starY, starXEnd, starYEnd;
-        function createModal(id) {
-            console.log('creatModal')
-            let modal = document.getElementById(id)
-            if (!modal) { // 在没有遮罩的时候创建遮罩
-                modal = document.createElement('div')
-                modal.id = id
-                modal.style.cssText = `position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 1;background: rgba(0,0,0,.2);`
-                document.body.appendChild(modal)
-            }
-        }
-        oDiv.addEventListener('touchstart', function (e) {
-            createModal('moveIconMask')
-            //e.preventDefault();
-            disX = e.touches[0].clientX - this.offsetLeft;
-            disY = e.touches[0].clientY - this.offsetTop;
-            starX = e.touches[0].clientX;
-            starY = e.touches[0].clientY;
-            console.log(disX)
-        });
-        oDiv.addEventListener('touchmove', function (e) {
-            L = e.touches[0].clientX - disX;
-            T = e.touches[0].clientY - disY;
-            starXEnd = e.touches[0].clientX - starX;
-            starYEnd = e.touches[0].clientY - starY;
-            console.log(L);
-            if (L < 0) {
-                L = 0;
-            } else if (L > document.documentElement.clientWidth - this.offsetWidth) {
-                L = document.documentElement.clientWidth - this.offsetWidth;
-            }
-
-            if (T < 0) {
-                T = 0;
-            } else if (T > document.documentElement.clientHeight - this.offsetHeight) {
-                T = document.documentElement.clientHeight - this.offsetHeight;
-            }
-            moveX = L + 'px';
-            moveY = T + 'px';
-            //console.log(moveX);
-            this.style.left = moveX;
-            this.style.top = moveY;
-        });
-    }
-
-</script>
